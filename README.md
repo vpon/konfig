@@ -1,4 +1,4 @@
-# Konfig
+# Konfig [![Travis](https://img.shields.io/travis/vpon/konfig.svg?style=flat-square)](https://travis-ci.org/vpon/konfig)
 
 A scala helper library for [typesafe config](https://github.com/typesafehub/config)
 
@@ -25,7 +25,7 @@ case class MyAppConfig(host: String, port: Int)
 val config = ConfigFactory.load().read[MyAppConfig]("my-app")
 ```
 
-more examples: [example.scala](https://github.com/vpon/konfig/blob/master/src/test/scala/com/example/example.scala), [test case](https://github.com/vpon/konfig/blob/master/src/test/scala/com/vpon/konfig/konfig.scala)
+more: [example.scala](https://github.com/vpon/konfig/blob/master/src/test/scala/com/example/example.scala), [test case](https://github.com/vpon/konfig/blob/master/src/test/scala/com/vpon/konfig/konfig.scala)
 
 
 ## license
