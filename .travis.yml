@@ -1,0 +1,21 @@
+language: scala
+jdk:
+- oraclejdk8
+env:
+  global:
+    secure: JIhpsRBWFCKWbpUdkpHkoOdbRTf4IOvDZpBi8/FPuPb4mJIfLxwONkMnO//tvUWM+Q+rlcgoQN+RsjDfY9h5b7I3UPtbo8oB35ThyA8U7JWoUExZSdtoMErviBH7OVuSgypLafOgMeCfzOzwcc9FkyCiPv2NnntU1dMaITSPU2TGS8dZ/jjSg5RiLLNjt64e5Lu3DN5E2dSUsuEKwN02oTuniCAAG7TxfZBJVw0cxYHP1i7vB5lXA2la3knEdD0DyFOxJm5ETuyUO98rn6n73KrKnvIDkjGtUGIaf4ACUbrtxn0QqUuDZfG1InW4sdgG51X4f3xC+yZMWrz+KLq327eQav5b/QIX8HiEd+eNV/4p0nxFW+TlqM5WK2HEttEFyahFTXMalvzI9x1v46cMRZcAT1s5O5BT7GM21tE0MWv7pw5J1NGCHCAr9VBPlFNOTqtbVLadcstWl7XdcUCAF0qxo5VEX38ma/DSubIqWNhXmjgqTQ4tBAk9u4MxiBXMj951TeEZmybcDCMitGt66ZBbw8kNwG4B18GnBjvXG5/8Q7fdaQr6eDqpcO8E9fp0Oe4ukm92C8ziQPQu7TGDbu9Y7eNuXZzT8tufnqJ54svj10EV/fhqkQbm9vHavLhqtuQOdZFSBXMCFkpyiVf/l+vGdxhd5DHTbb7m7wEyojs=
+    secure: w7S9reK45N2+UfWFXvbWsDk2N1JNtMXb9kwguBlJvkXsZiga0oKcT2qsGGTveKNLMsZnOpLExDE2v3Oqvv7FkIkwa6vBq+IQeO/Z3ovpQzudy8N/I2jS3tE2uLWJdtnt0hKtITpVL0hLFeHciME0w5VAZGMD3uVm3NiISOMDonZOutUfaU7BwGvEUccym7eg1QV6W1X+Uwy9cnkUKHh0armXFjy5VI9JnpKueHq0ny1A5c3Z9+gnhwWY/xi1qOTZSkM/GkJwDLQChIcGwT9hr6bmuZvA6B+HO3ae3g+LYgHOY5LYaDJG6O5gwtgZ3DifrGSmTVLlfX9HdkX0nTa/25Cgdq3/fkPCGHuSpmK2E/E4C2OBjwCt4YHvUOy/yGsygSCyIeR4TPYKN2NcM5WnS7xvq68lI4YvlccP/9tDGesYjEaV7dxi1S5HtNe9EPWGcicE/BhxTJ/Zn4hFHQ2AiHogJtwHXyYkb1xjutKzVSIkU1t1u7X8F0fkJfv6RqT8MKM+7fTrzt01RESpPdP/pFmoFef42yLaSOo25tKjqNszInuxl5liizZ6Ni2oWa57aPo/PBhwBJUgU8DhKzzYNWGdJP5qTD2KARlsjiRy2GNxeXXswsb5dxzSSUHarVLpm21gw6EovEWT26IqT/7MYXPqjn0OdqFdsrdJ8r+jybI=
+before_script:
+- mkdir ~/.bintray
+- touch ~/.bintray/.credentials
+- echo 'realm = Bintray API Realm' >> ~/.bintray/.credentials
+- echo 'host = api.bintray.com' >> ~/.bintray/.credentials
+- echo "user = $BT_USER" >> ~/.bintray/.credentials
+- echo "password = $BT_KEY" >> ~/.bintray/.credentials
+script:
+- sbt test
+- sbt publish
+cache:
+  directories:
+  - "$HOME/.ivy2"
+  - "$HOME/.sbt"
