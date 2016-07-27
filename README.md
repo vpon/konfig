@@ -2,7 +2,12 @@
 
 A scala helper library for [typesafe config](https://github.com/typesafehub/config)
 
-`TODO: publish to maven central`
+```
+resolvers += Resolver.bintrayRepo("vpon", "maven")
+libraryDependencies += "com.vpon" % "konfig" % "0.1-M1"
+```
+
+_bintray for now, we will publish to jcenter or maven central if enough people use it_
 
 ## examples
 
