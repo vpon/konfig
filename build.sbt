@@ -2,6 +2,7 @@ organization  := "com.vpon"
 name          := "konfig"
 scalaVersion  := "2.11.8"
 crossScalaVersions  := Seq("2.11.8", "2.12.0-M4")
+description   := "Yet a scala helper library for typesafe config"
 
 scalacOptions := Seq(
   "-deprecation"             // Emit warning and location for usages of deprecated APIs
