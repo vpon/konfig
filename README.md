@@ -4,7 +4,7 @@ A scala helper library for [typesafe config](https://github.com/typesafehub/conf
 
 ```
 resolvers += Resolver.bintrayRepo("vpon", "maven")
-libraryDependencies += "com.vpon" % "konfig" % "0.1-M1"
+libraryDependencies += "com.vpon" %% "konfig" % "0.1-M2"
 ```
 
 _bintray for now, we will publish to jcenter or maven central if enough people use it_
