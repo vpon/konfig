@@ -13,12 +13,14 @@ lazy val konfig = project
   .settings(commonSettings)
   .settings(coreDependencies)
   .settings(wartSettings)
+  .settings(publishSettings)
 
 lazy val `konfig-twitter-util` = project
   .settings(name := "konfig-twitter-util")
   .settings(commonSettings)
   .settings(twitterUtilDependencies)
   .settings(wartSettings)
+  .settings(publishSettings)
   .dependsOn(konfig)
 
 lazy val commonSettings = Seq(
@@ -83,4 +85,10 @@ lazy val wartSettings = Seq(
     // , Wart.Throw
     , Wart.TryPartial
   )
+)
+
+lazy val publishSettings = Seq(
+  licenses             += ("Apache-2.0", url("http://www.apache.org/licenses/LICENSE-2.0")),
+  bintrayRepository    := "maven",
+  bintrayOrganization  := Some("vpon")
 )
