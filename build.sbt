@@ -43,12 +43,15 @@ lazy val commonSettings = Seq(
   )
 )
 
+libraryDependencies in Global ++= Seq(
+  "org.scalacheck"      %%  "scalacheck"    % "1.13.2" % "test",
+  "org.scalatest"       %%  "scalatest"     % "3.0.0" % "test"
+)
+
 lazy val coreDependencies = Seq(
   libraryDependencies ++= Seq(
     "com.typesafe"        %   "config"        % "1.3.0",
-    "com.chuusai"         %%  "shapeless"     % "2.3.1",
-    "org.scalacheck"      %% "scalacheck"     % "1.13.1" % "test",
-    "org.scalatest"       %% "scalatest"      % "3.0.0-M7" % "test"
+    "com.chuusai"         %%  "shapeless"     % "2.3.1"
   )
 )
 
