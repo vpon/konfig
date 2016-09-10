@@ -4,6 +4,8 @@ scalaVersion in Global  := "2.11.8"
 crossScalaVersions in Global := Seq("2.11.8", "2.12.0-RC1")
 
 lazy val root = project.in(file("."))
+  .settings(publish := {})
+  .settings(publishLocal := {})
   .aggregate(konfig, `konfig-twitter-util`)
 
 lazy val konfig = project
