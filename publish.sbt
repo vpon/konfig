@@ -1,7 +1,7 @@
-licenses += ("Apache-2.0", url("http://www.apache.org/licenses/LICENSE-2.0"))
-// bintrayReleaseOnPublish := false
-bintrayRepository := "maven"
-bintrayOrganization := Some("vpon")
+licenses in Global            += ("Apache-2.0", url("http://www.apache.org/licenses/LICENSE-2.0"))
+bintrayRepository in Global   := "maven"
+bintrayOrganization in Global := Some("vpon")
+// bintrayReleaseOnPublish       := false
 
 //pomExtra := {
 //  <scm>
