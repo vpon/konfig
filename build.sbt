@@ -59,7 +59,7 @@ lazy val coreDependencies = Seq(
 
 lazy val twitterUtilDependencies = Seq(
   libraryDependencies ++= Seq(
-    "com.twitter"   %% "util-core"  % "6.37.0"
+    "com.twitter"   %% "util-core"  % "6.38.0"
   )
 )
 
