@@ -16,6 +16,16 @@ package konfig {
     def read(c: Config, path: String): T
   }
 
+  object ConfigReader {
+    def of[T](f: (Config, String) => T) = new ConfigReader[T] {
+      def read(c: Config, path: String) = f(c, path)
+    }
+
+    def fromString[T](f: String => T) = new ConfigReader[T] {
+      def read(c: Config, path: String) = f(c.getString(path))
+    }
+  }
+
   trait SubtypeHint {
     def fieldName(): String
 
@@ -91,47 +101,27 @@ package konfig {
   }
 
   trait StandardReaders {
-    implicit object stringReader extends ConfigReader[String] {
-      override def read(c: Config, path: String) = c.getString(path)
-    }
+    implicit val stringReader: ConfigReader[String] = ConfigReader.fromString(identity)
 
-    implicit object intReader extends ConfigReader[Int] {
-      override def read(c: Config, path: String) = c.getInt(path)
-    }
+    implicit val intReader: ConfigReader[Int] = ConfigReader.of(_.getInt(_))
 
-    implicit object longReader extends ConfigReader[Long] {
-      override def read(c: Config, path: String) = c.getLong(path)
-    }
+    implicit val longReader: ConfigReader[Long] = ConfigReader.of(_.getLong(_))
 
-    implicit object booleanReader extends ConfigReader[Boolean] {
-      override def read(c: Config, path: String) = c.getBoolean(path)
-    }
+    implicit val booleanReader: ConfigReader[Boolean] = ConfigReader.of(_.getBoolean(_))
 
-    implicit object floatReader extends ConfigReader[Float] {
-      override def read(c: Config, path: String) = c.getDouble(path).toFloat
-    }
+    implicit val floatReader: ConfigReader[Float] = ConfigReader.of(_.getDouble(_).toFloat)
 
-    implicit object doubleReader extends ConfigReader[Double] {
-      override def read(c: Config, path: String) = c.getDouble(path)
-    }
+    implicit val doubleReader: ConfigReader[Double] = ConfigReader.of(_.getDouble(_))
 
-    implicit object bigDecimalReader extends ConfigReader[BigDecimal] {
-      override def read(c: Config, path: String) = BigDecimal(c.getString(path))
-    }
+    implicit val bigDecimalReader: ConfigReader[BigDecimal] = ConfigReader.fromString(BigDecimal.apply)
 
-    implicit object finiteDurationReader extends ConfigReader[FiniteDuration] {
-      override def read(c: Config, path: String) = FiniteDuration(c.getDuration(path).toNanos, NANOSECONDS)
-    }
+    implicit val finiteDurationReader: ConfigReader[FiniteDuration] = ConfigReader.of(_.getDuration(_).toNanos.nanos)
 
-    implicit object memorySizeReader extends ConfigReader[ConfigMemorySize] {
-      override def read(c: Config, path: String) = c.getMemorySize(path)
-    }
+    implicit val memorySizeReader: ConfigReader[ConfigMemorySize] = ConfigReader.of(_.getMemorySize(_))
 
-    implicit object configReader extends ConfigReader[Config] {
-      override def read(c: Config, path: String) = c.getConfig(path)
-    }
+    implicit val configReader: ConfigReader[Config] = ConfigReader.of(_.getConfig(_))
 
-    implicit def strMapReader[T](implicit cr: ConfigReader[T]) = {
+    implicit def strMapReader[T](implicit cr: ConfigReader[T]): ConfigReader[Map[String, T]] = {
       val _PATH = "_"
       new ConfigReader[Map[String, T]] {
         override def read(c: Config, path: String) = {
