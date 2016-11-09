@@ -53,7 +53,7 @@ libraryDependencies in Global ++= Seq(
 lazy val coreDependencies = Seq(
   libraryDependencies ++= Seq(
     "com.typesafe"        %   "config"        % "1.3.0",
-    "com.chuusai"         %%  "shapeless"     % "2.3.1"
+    "com.chuusai"         %%  "shapeless"     % "2.3.2"
   )
 )
 
