@@ -1,7 +1,7 @@
 organization in Global  := "com.vpon"
 name in Global          := "konfig"
 scalaVersion in Global  := "2.11.8"
-crossScalaVersions in Global := Seq("2.11.8", "2.12.0-RC1")
+crossScalaVersions in Global := Seq("2.11.8", "2.12.0")
 
 lazy val root = project.in(file("."))
   .settings(publish := {})
@@ -46,20 +46,20 @@ lazy val commonSettings = Seq(
 )
 
 libraryDependencies in Global ++= Seq(
-  "org.scalacheck"      %%  "scalacheck"    % "1.13.2" % "test",
-  "org.scalatest"       %%  "scalatest"     % "3.0.0" % "test"
+  "org.scalacheck"      %%  "scalacheck"    % "1.13.4" % "test",
+  "org.scalatest"       %%  "scalatest"     % "3.0.1" % "test"
 )
 
 lazy val coreDependencies = Seq(
   libraryDependencies ++= Seq(
-    "com.typesafe"        %   "config"        % "1.3.0",
+    "com.typesafe"        %   "config"        % "1.3.1",
     "com.chuusai"         %%  "shapeless"     % "2.3.2"
   )
 )
 
 lazy val twitterUtilDependencies = Seq(
   libraryDependencies ++= Seq(
-    "com.twitter"   %% "util-core"  % "6.38.0"
+    "com.twitter"   %% "util-core"  % "6.39.0"
   )
 )
 
